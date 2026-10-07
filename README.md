@@ -132,3 +132,9 @@ This is the descriptions of tables and columns lower.
 | month | Month               |
 | year  | Year                |
 | hour  | Hour (From 0 to 23) |
+
+## Part 7: Demo Queries
+
+This is the Demo Queries file :
+
+[Demo Queries](queries.sql)
