@@ -73,6 +73,7 @@ This project uses two primary datasets.
 This is the star schema:
 
 ![Star schema](./images/star_schema.png)
+[Star schema](./images/star_schema.png)
 
 ## Part 6: Data Dictionary
 
