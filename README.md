@@ -26,6 +26,12 @@ The objective of this project is to identify which Citi Bike stations in New Yor
 10. Which stations combine high activity per dock with bike gains or losses?
 11. What share of activity happens at the busiest 10% of stations?
 12. Which stations have steady activity or large spikes on active days?
+13. Which 10 stations experience the highest net bike depletion during morning peak hours (07:00–09:00), requiring urgent early rebalancing dispatch?
+14. Which stations receive far more bikes than leave them on weekdays between 5 p.m. and 7 p.m.—to the point where the difference exceeds 90% of their capacity?
+15. What is the turnover rate of departures for each station on weekdays?
+16. Are e-bike trips causing faster station turnover and localized inventory depletion compared to classic bikes?
+17. What are the top 60 high-traffic origin-destinations ?
+
 
 ## Data Sets
 This project uses two primary datasets.
