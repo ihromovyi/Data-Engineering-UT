@@ -77,7 +77,7 @@ This is the star schema:
 ## Part 6: Data Dictionary
 
 Data types are in the previous part with the star schema. 
-This is the descriptions of tables and columns lower.
+These are the descriptions of tables and columns below.
 
 ### Fact_ride : A finish trip (grain)
 
