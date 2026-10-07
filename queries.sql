@@ -12,6 +12,53 @@
 -- Historical capacity is only known from snapshots actually collected.
 -- Dim_DateTime has no minutes/seconds, so exact trip duration is unavailable.
 
+-- Create tables 
+CREATE TABLE Dim_Bike (
+    id            INTEGER PRIMARY KEY,
+    rideable_type VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Dim_User (
+    id            INTEGER PRIMARY KEY,
+    member_casual VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE Dim_DateTime (
+    id    INTEGER PRIMARY KEY,
+    day   INTEGER NOT NULL CHECK (day BETWEEN 1 AND 31),
+    month INTEGER NOT NULL CHECK (month BETWEEN 1 AND 12),
+    year  INTEGER NOT NULL,
+    hour  INTEGER NOT NULL CHECK (hour BETWEEN 0 AND 23),
+    UNIQUE (year, month, day, hour)
+);
+
+CREATE TABLE Dim_Station (
+    id           INTEGER PRIMARY KEY,
+    name         VARCHAR(100) NOT NULL,
+    short_name   VARCHAR(20),
+    lon          NUMERIC(17,14),
+    lat          NUMERIC(17,14),
+    region_id    VARCHAR(3),
+    Capacity     INTEGER,
+    has_kiosk    BOOLEAN,
+    station_type VARCHAR(10),
+    is_current   BOOLEAN NOT NULL DEFAULT TRUE,
+    valid_from   TIMESTAMP NOT NULL,
+    valid_to     TIMESTAMP
+);
+
+CREATE TABLE Fact_ride (
+    id                INTEGER PRIMARY KEY,
+    ride_id           VARCHAR(100) NOT NULL UNIQUE,
+    rideable_type_key INTEGER NOT NULL REFERENCES Dim_Bike(id),
+    member_casual_key INTEGER NOT NULL REFERENCES Dim_User(id),
+    start_station_key INTEGER NOT NULL REFERENCES Dim_Station(id),
+    end_station_key   INTEGER NOT NULL REFERENCES Dim_Station(id),
+    started_at_key    INTEGER NOT NULL REFERENCES Dim_DateTime(id),
+    ended_at_key      INTEGER NOT NULL REFERENCES Dim_DateTime(id)
+);
+
+
 -- ONE HELPER: one row per departure or arrival.
 CREATE OR REPLACE TEMP VIEW movements AS
 SELECT f.start_station_key AS station_key,
