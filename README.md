@@ -73,3 +73,62 @@ This project uses two primary datasets.
 This is the star schema:
 
 ![Star schema](./images/star_schema.png)
+
+## Part 6: Data Dictionary
+
+Data types are in the previous part with the star schema. 
+This is the descriptions of tables and columns lower.
+
+### Fact_ride : A finish trip (grain)
+
+| Name              | Description                                |
+| ----------------- | ------------------------------------------ |
+| id                | Substitution key (SK)                      |
+| ride_id           | Source ID in the source dataset            |
+| rideable_type_key | FK to Dim_Bike for the type of bike        |
+| member_casual_key | FK to Dim_User for type of user            |
+| start_station_key | FK to Dim_Station for start station        |
+| end_station_key   | FK to Dim_Station for end station          |
+| started_at_key    | FK to Dim_DateTime for the trip start date |
+| ended_at_key      | FK to Dim_DateTime                         |
+
+### Dim_Bike : Bike type
+
+| Name          | Description         |
+| ------------- | ------------------- |
+| id            | PK                  |
+| rideable_type | classic or electric |
+
+### Dim_User : User type
+
+| Name          | Description      |
+| ------------- | ---------------- |
+| id            | PK               |
+| member_casual | Member ou casual |
+
+### Dim_Station : Information about the start station and the end station
+
+| Name         | Description                                                           |
+| ------------ | --------------------------------------------------------------------- |
+| id           | PK                                                                    |
+| name         | Name of the station                                                   |
+| short_name   | Short code of the station                                             |
+| lon          | Longitude coordinates                                                 |
+| lat          | Latitude coordinates                                                  |
+| region_id    | Region code                                                           |
+| Capacity     | Docks number (not available, just the number of docks in the station) |
+| has_kiosk    | If a kiosk is present or not                                          |
+| station_type | Station type (lightweight ou classic)                                 |
+| is_current   | Actuel station in use or not                                          |
+| valid_from   | First date of use                                                     |
+| valid_to     | Last time of use (Can be NULL)                                        |
+
+### Dim_DateTime : Calendar of each trip
+
+| Name  | Description         |
+| ----- | ------------------- |
+| id    | PK                  |
+| day   | Day of month        |
+| month | Month               |
+| year  | Year                |
+| hour  | Hour (From 0 to 23) |
