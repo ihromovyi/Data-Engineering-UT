@@ -262,18 +262,18 @@ JOIN Dim_DateTime d_start
 ON f.started_at_key = d_start.id
 JOIN Dim_DateTime d_end
 ON f.ended_at_key = d_end.id
-WHERE f.start_station_key <> f.end_station_key AND (f.start_station_key = s.id AND (EXTRACT(ISODOW FROM MAKE_DATE(d_start.year, d_start.month, d_start.day)) BETWEEN 1 AND 5) AND d_start.hour BETWEEN 17 AND 18) OR (f.end_station_key = s.id AND EXTRACT(ISODOW FROM MAKE_DATE(d_end.year, d_end.month, d_end.day)) BETWEEN 1 AND 5) AND d_end.hour BETWEEN 17 AND 18
+WHERE f.start_station_key <> f.end_station_key AND ((f.start_station_key = s.id AND (EXTRACT(ISODOW FROM MAKE_DATE(d_start.year, d_start.month, d_start.day)) BETWEEN 1 AND 5) AND d_start.hour BETWEEN 17 AND 18) OR (f.end_station_key = s.id AND (EXTRACT(ISODOW FROM MAKE_DATE(d_end.year, d_end.month, d_end.day)) BETWEEN 1 AND 5) AND d_end.hour BETWEEN 17 AND 18))
 GROUP BY s.id, s.name, s.Capacity
 HAVING (COUNT(CASE WHEN f.end_station_key = s.id THEN 1 END) -  COUNT(CASE WHEN f.start_station_key = s.id THEN 1 END)) > 0.9 * s.Capacity
 ORDER BY COUNT(CASE WHEN f.end_station_key = s.id THEN 1 END) - COUNT(CASE WHEN f.start_station_key = s.id THEN 1 END) DESC;
 
 -- Q13. What is the turnover rate of departures for each station on weekdays?
-SELECT s.id, s.name ,s.Capacity, COUNT(*) / s.Capacity AS turnover
+SELECT s.id, s.name ,s.Capacity, COUNT(*) * 1.0 / s.Capacity AS turnover
 FROM Fact_ride f
 JOIN Dim_Station s
 ON f.start_station_key = s.id AND s.is_current = TRUE
-JOIN Dim_DateTime d
-ON f.started_at_key = d.id
+JOIN Dim_DateTime d_start
+ON f.started_at_key = d_start.id
 WHERE EXTRACT(ISODOW FROM MAKE_DATE(d_start.year, d_start.month, d_start.day)) BETWEEN 1 AND 5
 GROUP BY s.id, s.name, s.Capacity
 ORDER BY COUNT(*) * 1.0 / s.Capacity DESC;
