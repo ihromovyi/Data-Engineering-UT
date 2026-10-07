@@ -190,3 +190,71 @@ SELECT short_name, day_type, COUNT(*) AS active_days,
 FROM daily
 GROUP BY short_name, day_type
 ORDER BY avg_active_day_movements DESC;
+
+-- Q11. Which 10 stations experience the highest net bike depletion during morning peak hours (07:00–09:00), requiring urgent early rebalancing dispatch?
+SELECT  s.id, s.name
+FROM Fact_ride f
+JOIN Dim_Station s
+ON (f.start_station_key = s.id OR f.end_station_key = s.id) AND s.is_current = TRUE
+JOIN Dim_DateTime d_start
+ON f.started_at_key = d_start.id
+JOIN Dim_DateTime d_end
+ON f.ended_at_key = d_end.id
+WHERE f.start_station_key <> f.end_station_key AND ((f.start_station_key=s.id AND d_start.hour BETWEEN 7 AND 9) OR (f.end_station_key=s.id AND d_end.hour BETWEEN 7 AND 9))
+GROUP BY s.id, s.name
+HAVING COUNT(CASE WHEN f.end_station_key = s.id THEN 1 END) - COUNT(CASE WHEN f.start_station_key = s.id THEN 1 END) < 0
+ORDER BY COUNT(CASE WHEN f.end_station_key = s.id THEN 1 END) - COUNT(CASE WHEN f.start_station_key = s.id THEN 1 END) ASC
+LIMIT 10;
+
+-- Q12. Which stations receive far more bikes than leave them on weekdays between 5 p.m. and 7 p.m.—to the point where the difference exceeds 90% of their capacity?
+SELECT s.id, s.name,  s.Capacity
+FROM Fact_ride f
+JOIN Dim_Station s
+ON (f.start_station_key = s.id OR f.end_station_key = s.id)
+JOIN Dim_DateTime d_start
+ON f.started_at_key = d_start.id
+JOIN Dim_DateTime d_end
+ON f.ended_at_key = d_end.id
+WHERE f.start_station_key <> f.end_station_key AND ((f.start_station_key = s.id AND d_start.day BETWEEN 1 AND 5 AND d_start.hour BETWEEN 17 AND 18) OR (f.end_station_key = s.id AND d_end.day BETWEEN 1 AND 5 AND d_end.hour BETWEEN 17 AND 18))
+GROUP BY s.id, s.name, s.Capacity
+HAVING (COUNT(CASE WHEN f.end_station_key = s.id THEN 1 END) -  COUNT(CASE WHEN f.start_station_key = s.id THEN 1 END)) > 0.9 * s.Capacity
+ORDER BY COUNT(CASE WHEN f.end_station_key = s.id THEN 1 END) - COUNT(CASE WHEN f.start_station_key = s.id THEN 1 END) DESC;
+
+-- Q13. What is the turnover rate of departures for each station on weekdays?
+SELECT s.id, s.name ,s.Capacity, COUNT(*) / s.Capacity AS turnover
+FROM Fact_ride f
+JOIN Dim_Station s
+ON f.start_station_key = s.id AND s.is_current = TRUE
+JOIN Dim_DateTime d
+ON f.started_at_key = d.id
+WHERE d.day BETWEEN 1 AND 5
+GROUP BY s.id, s.name, s.Capacity
+ORDER BY COUNT(*) * 1.0 / s.Capacity DESC;
+
+-- Q14. Are e-bike trips causing faster station turnover and localized inventory depletion compared to classic bikes?
+SELECT rideable_type, AVG(turnover) AS avg_turnover, 100 * COUNT(CASE WHEN flux < 0 THEN 1 END) / COUNT(*) AS deficit
+FROM (
+ SELECT s.id, s.Capacity, b.rideable_type,
+        COUNT(CASE WHEN f.start_station_key = s.id THEN 1 END) * 1.0 / NULLIF(s.Capacity, 0) AS turnover,
+        COUNT(CASE WHEN f.end_station_key = s.id THEN 1 END) - COUNT(CASE WHEN f.start_station_key = s.id THEN 1 END) AS flux
+ FROM Fact_ride f
+ JOIN Dim_Station s
+ ON (f.start_station_key = s.id OR f.end_station_key = s.id) AND s.is_current = TRUE
+ JOIN Dim_Bike b
+ ON f.rideable_type_key = b.id
+ GROUP BY s.id, s.Capacity, b.rideable_type
+) t
+GROUP BY rideable_type;
+
+-- Q15. What are the top 60 high-traffic origin-destinations ?
+SELECT s1.name, s2.name, COUNT(*)
+FROM Fact_ride f
+JOIN Dim_Station s1
+ON f.start_station_key = s1.id AND s1.is_current = TRUE
+JOIN Dim_Station s2 
+ON f.end_station_key   = s2.id AND s2.is_current = TRUE
+GROUP BY s1.name, s2.name
+ORDER BY COUNT(*) DESC
+LIMIT 60;
+
+
