@@ -31,4 +31,10 @@ CREATE TABLE IF NOT EXISTS bronze.citibikenyc_stations_status (
     stat_status JSONB NOT NULL    
 );
 
+-- Table to store raw bikes types
+CREATE TABLE IF NOT EXISTS bronze.citibikenyc_bikes_types (
+    _loaded_at TIMESTAMP NOT NULL,
+    bikes_types JSONB NOT NULL    
+);
+
 
