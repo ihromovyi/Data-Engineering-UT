@@ -3,3 +3,17 @@ Part2/logs
 Part2/pgdata_airflow
 Part2/pgdata_bikes
 
+# Python virtual environment
+Part2/.venv/
+
+# dbt generated files
+Part2/citibike_dbt/target/
+Part2/citibike_dbt/logs/
+Part2/citibike_dbt/dbt_packages/
+
+# Temporary test data
+Part2/citibike_dbt/stations_test.json
+
+# Local credentials
+Part2/.env
+Part2/citibike_dbt/profiles.yml

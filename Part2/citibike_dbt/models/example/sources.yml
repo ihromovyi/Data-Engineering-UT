@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: bronze
+    schema: bronze
+    tables:
+      - name: citibikenyc_trips
+      - name: citibikenyc_stations_informations
+      - name: citibikenyc_stations_status

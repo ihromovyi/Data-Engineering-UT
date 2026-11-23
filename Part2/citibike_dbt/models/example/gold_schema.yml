@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: fact_ride
+    description: "One row per Citi Bike ride."
+    columns:
+      - name: ride_id
+        description: "Unique identifier of each ride."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_bike
+    description: "Dimension containing bike types."
+    columns:
+      - name: bike_key
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_user
+    description: "Dimension containing user categories."
+    columns:
+      - name: user_key
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_station
+    description: "Dimension containing Citi Bike stations."
+    columns:
+      - name: station_id
+        description: "Unique identifier of the station."
+        data_tests:
+          - unique
+          - not_null
