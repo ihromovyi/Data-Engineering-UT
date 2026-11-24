@@ -16,6 +16,7 @@ stations AS (
 SELECT
     station ->> 'station_id' AS station_id,
     station ->> 'name' AS station_name,
+    station ->> 'short_name' AS short_name,
     (station ->> 'lat')::double precision AS latitude,
     (station ->> 'lon')::double precision AS longitude,
     (station ->> 'capacity')::integer AS capacity,

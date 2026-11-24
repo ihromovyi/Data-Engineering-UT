@@ -7,3 +7,4 @@ sources:
       - name: citibikenyc_trips
       - name: citibikenyc_stations_informations
       - name: citibikenyc_stations_status
+      - name: citibikenyc_bikes_types
