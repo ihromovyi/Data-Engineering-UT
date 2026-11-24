@@ -154,3 +154,20 @@ services:
       bikes-db:
         condition: service_healthy
     restart: "no"
+
+  dbt:
+    build:
+      context: .
+      dockerfile: dbt.Dockerfile
+    container_name: dbt
+    volumes:
+      - ./citibike_dbt:/dbt
+    environment:
+      DBT_PROJECT_DIR: /dbt
+      DBT_PROFILES_DIR: /dbt
+    depends_on:
+      bikes-db:
+        condition: service_healthy
+    tty: true
+    stdin_open: true
+    restart: always
