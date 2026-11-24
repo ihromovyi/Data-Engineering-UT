@@ -1,0 +1,12 @@
+citibike_dbt: # <-- Remplace par la valeur exacte de "profile:" dans ton dbt_project.yml
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: bikes-db
+      port: 5432
+      user: bikes_user
+      pass: bikes_pass
+      dbname: bikes_db
+      schema: gold
+      threads: 4
