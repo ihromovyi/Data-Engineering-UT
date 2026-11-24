@@ -4,8 +4,22 @@ models:
   - name: fact_ride
     description: "One row per Citi Bike ride."
     columns:
+      - name: id
+        description: "Surrogate primary key of the fact row."
+        data_tests:
+          - unique
+          - not_null
       - name: ride_id
-        description: "Uniqu identifier of each ride."
+        description: "Unique identifier of each ride."
+        data_tests:
+          - unique
+          - not_null
+
+  - name: fact_station_status
+    description: "Historical snapshots of bike and dock availability per station."
+    columns:
+      - name: id
+        description: "Unique primary key of the station status record."
         data_tests:
           - unique
           - not_null
@@ -14,14 +28,25 @@ models:
     description: "Dimension containing bike types."
     columns:
       - name: bike_id
+        description: "Unique identifier of the vehicle type."
         data_tests:
           - unique
+          - not_null
+      - name: rideable_type
+        description: "Mapped rideable type matching trip records (classic_bike, electric_bike)."
+        data_tests:
           - not_null
 
   - name: dim_user
     description: "Dimension containing user categories."
     columns:
       - name: user_id
+        description: "Unique identifier of the user category."
+        data_tests:
+          - unique
+          - not_null
+      - name: member_casual
+        description: "User type (member or casual)."
         data_tests:
           - unique
           - not_null
@@ -31,6 +56,19 @@ models:
     columns:
       - name: station_id
         description: "Unique identifier of the station."
+        data_tests:
+          - unique
+          - not_null
+      - name: short_name
+        description: "Short station code used to join trip records."
+        data_tests:
+          - not_null
+
+  - name: dim_datetime
+    description: "Dimension containing decomposed timestamps."
+    columns:
+      - name: datetime_id
+        description: "Unique UTC timestamp identifier."
         data_tests:
           - unique
           - not_null
