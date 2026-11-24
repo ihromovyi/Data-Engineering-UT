@@ -8,7 +8,7 @@ WITH latest_data AS (
 ),
 
 bykes_types AS (
-    SELECT jsonb_array_elements(bikes_types -> 'vehicle_types') AS vehicle
+    SELECT jsonb_array_elements(bikes_types) AS vehicle
     FROM latest_data
 )
 
