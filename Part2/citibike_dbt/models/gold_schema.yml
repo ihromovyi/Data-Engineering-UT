@@ -5,7 +5,7 @@ models:
     description: "One row per Citi Bike ride."
     columns:
       - name: ride_id
-        description: "Unique identifier of each ride."
+        description: "Uniqu identifier of each ride."
         data_tests:
           - unique
           - not_null
@@ -13,7 +13,7 @@ models:
   - name: dim_bike
     description: "Dimension containing bike types."
     columns:
-      - name: bike_key
+      - name: bike_id
         data_tests:
           - unique
           - not_null
@@ -21,7 +21,7 @@ models:
   - name: dim_user
     description: "Dimension containing user categories."
     columns:
-      - name: user_key
+      - name: user_id
         data_tests:
           - unique
           - not_null
