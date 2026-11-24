@@ -5,6 +5,8 @@ WITH latest_status AS (
         _loaded_at,
         stat_status
     FROM {{ source('bronze', 'citibikenyc_stations_status') }}
+    ORDER BY _loaded_at DESC
+    LIMIT 1
 ),
 
 station_status AS (
@@ -25,7 +27,7 @@ all_station_status AS (
 )
 
 SELECT
-    ROW_NUMBER() OVER (ORDER BY s._loaded_at, s.station_id) AS id,
+    ROW_NUMBER() OVER (ORDER BY s.station_id) AS id,
     stat_info.station_id,
     (s.station ->> 'num_bikes_available')::int AS num_bikes_available,
     (s.station ->> 'num_bikes_disabled')::int AS num_bikes_disabled,
