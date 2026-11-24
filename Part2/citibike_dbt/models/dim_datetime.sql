@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 SELECT DISTINCT
-    started_at::timestamp AS datetime_key,
+    started_at::timestamp AS datetime_id,
     EXTRACT(YEAR FROM started_at::timestamp) AS year,
     EXTRACT(MONTH FROM started_at::timestamp) AS month,
     EXTRACT(DAY FROM started_at::timestamp) AS day,

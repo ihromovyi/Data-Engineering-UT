@@ -7,8 +7,8 @@ SELECT
     u.user_key AS member_casual_id,
     start_station.station_id AS start_station_id,
     end_station.station_id AS end_station_id,
-    d_start.datetime_key AS started_at_id,
-    d_end.datetime_key AS started_at_id,
+    d_start.datetime_id AS started_at_id,
+    d_end.datetime_id AS started_at_id,
     t.start_lat AS start_lat,
     t.start_lng AS start_lng,
     t.end_lat AS end_lat,
@@ -29,7 +29,7 @@ LEFT JOIN {{ ref('dim_station') }} AS end_station
     ON t.end_station_id = end_station.short_name
 
 LEFT JOIN {{ ref('dim_datetime') }} AS d_start
-    ON t.started_at::timestamp = d_start.datetime_key
+    ON t.started_at::timestamp = d_start.datetime_id
 
 LEFT JOIN {{ ref('dim_datetime') }} AS d_end
-    ON t.endend_at::timestamp = d_end.datetime_key
+    ON t.endend_at::timestamp = d_end.datetime_id
