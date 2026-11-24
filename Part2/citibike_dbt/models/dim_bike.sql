@@ -7,8 +7,8 @@ WITH latest_data AS (
     LIMIT 1
 ),
 
-stations AS (
-    SELECT jsonb_array_elements(bikes_types) AS station
+bykes_types AS (
+    SELECT jsonb_array_elements(bikes_types -> 'vehicle_types') AS vehicle
     FROM latest_data
 )
 
@@ -20,5 +20,6 @@ SELECT DISTINCT
     END AS rideable_type,
     vehicle ->> 'form_factor' AS form_factor,
     vehicle ->> 'propulsion_type' AS propulsion_type,
-FROM extracted_vehicles
+    (vehicle ->> 'max_range_meters')::numeric AS max_range_meters
+FROM bykes_types
 WHERE vehicle ->> 'vehicle_type_id' IS NOT NULL

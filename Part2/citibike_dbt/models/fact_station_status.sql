@@ -5,6 +5,8 @@ WITH station_status AS (
         _loaded_at,
         jsonb_array_elements(stat_status) AS station
     FROM {{ source('bronze', 'citibikenyc_stations_status') }}
+    ORDER BY _loaded_at DESC
+    LIMIT 1
 ),
 
 all_station_status AS (
