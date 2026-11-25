@@ -75,6 +75,8 @@ services:
       # The postgres:// scheme is what the Postgres provider expects (not postgresql+psycopg2://).
       AIRFLOW_CONN_BIKES_DB: postgres://${BIKES_DB_USER:-bikes_user}:${BIKES_DB_PASSWORD:-bikes_pass}@bikes-db:5432/${BIKES_DB_NAME:-bikes_db}
       _PIP_ADDITIONAL_REQUIREMENTS: "apache-airflow-providers-postgres requests"
+      DBT_PROJECT_DIR: /dbt
+      DBT_PROFILES_DIR: /dbt
     ports:
       - "${AIRFLOW_WEB_PORT:-8080}:8080"
     volumes:
@@ -82,6 +84,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./logs:/opt/airflow/logs
       - ./data/orders:/tmp/data/orders
+      - ./citibike_dbt:/dbt
     depends_on:
       airflow-init:
         condition: service_completed_successfully
