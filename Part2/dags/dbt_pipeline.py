@@ -46,7 +46,7 @@ default_args = {
 with DAG(
     dag_id="dbt_pipeline",
     description="Seed raw data, build staging + mart models, run tests, take snapshot.",
-    schedule="* * * * *",
+    schedule="*/10 * * * *",    
     start_date=pendulum.datetime(2026, 1, 1, tz="UTC"),
     catchup=False,
     default_args=default_args,
