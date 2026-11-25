@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1050" viewBox="0 0 1800 1050" role="img" aria-labelledby="title desc">
+<title id="title">Citi Bike implemented Gold schema</title><desc id="desc">Two facts, four dimensions, all 45 columns and eight logical role relationships.</desc>
+<rect width="1800" height="1050" fill="white"/>
+<defs><marker id="one" markerWidth="12" markerHeight="18" refX="1" refY="9" orient="auto-start-reverse"><path d="M8 3V15" stroke="#536D82" fill="none"/></marker><marker id="many" markerWidth="15" markerHeight="18" refX="14" refY="9" orient="auto"><path d="M0 9L14 2M0 9L14 9M0 9L14 16" stroke="#536D82" fill="none"/></marker></defs>
+<text x="60" y="45" font-family="Arial,sans-serif" font-size="26" font-weight="bold" fill="#17212B">Citi Bike - implemented Gold schema</text>
+<text x="60" y="78" font-family="Arial,sans-serif" font-size="16" font-weight="normal" fill="#52616E">2 facts | 4 dimensions | all 45 columns | logical joins from dbt SQL (revision ef1a2d7)</text>
+<polyline points="650,154.5 590,154.5 590,532.5 560,532.5" fill="none" stroke="#536D82" stroke-width="1.5" marker-start="url(#one)" marker-end="url(#many)"/>
+<polyline points="510,154.5 575,154.5 575,561.5 560,561.5" fill="none" stroke="#536D82" stroke-width="1.5" marker-start="url(#one)" marker-end="url(#many)"/>
+<polyline points="1240,154.5 1190,154.5 1190,360 600,360 600,590.5 560,590.5" fill="none" stroke="#536D82" stroke-width="1.5" marker-start="url(#one)" marker-end="url(#many)"/>
+<polyline points="1240,154.5 1205,154.5 1205,385 620,385 620,619.5 560,619.5" fill="none" stroke="#536D82" stroke-width="1.5" marker-start="url(#one)" marker-end="url(#many)"/>
+<polyline points="650,534.5 632,534.5 632,648.5 560,648.5" fill="none" stroke="#536D82" stroke-width="1.5" marker-start="url(#one)" marker-end="url(#many)"/>
+<polyline points="650,534.5 642,534.5 642,677.5 560,677.5" fill="none" stroke="#536D82" stroke-width="1.5" marker-start="url(#one)" marker-end="url(#many)"/>
+<polyline points="1740,154.5 1770,154.5 1770,503.5 1740,503.5" fill="none" stroke="#536D82" stroke-width="1.5" marker-start="url(#one)" marker-end="url(#many)"/>
+<polyline points="1100,534.5 1160,534.5 1160,735.5 1240,735.5" fill="none" stroke="#536D82" stroke-width="1.5" marker-start="url(#one)" marker-end="url(#many)"/>
+<rect x="60" y="100" width="450" height="98" fill="white" stroke="#6A7B89"/><rect x="60" y="100" width="450" height="40" fill="#EEF2F5" stroke="#6A7B89"/>
+<text x="72" y="127" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#17212B">gold.dim_user</text>
+<text x="72" y="160" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">user_id : INTEGER</text>
+<text x="72" y="189" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">member_casual : VARCHAR</text>
+<rect x="650" y="100" width="450" height="185" fill="white" stroke="#6A7B89"/><rect x="650" y="100" width="450" height="40" fill="#EEF2F5" stroke="#6A7B89"/>
+<text x="662" y="127" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#17212B">gold.dim_bike</text>
+<text x="662" y="160" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">bike_id : INTEGER</text>
+<text x="662" y="189" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">rideable_type : TEXT</text>
+<text x="662" y="218" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">form_factor : TEXT</text>
+<text x="662" y="247" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">propulsion_type : TEXT</text>
+<text x="662" y="276" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">max_range_meters : NUMERIC</text>
+<rect x="1240" y="100" width="500" height="243" fill="white" stroke="#6A7B89"/><rect x="1240" y="100" width="500" height="40" fill="#EEF2F5" stroke="#6A7B89"/>
+<text x="1252" y="127" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#17212B">gold.dim_station</text>
+<text x="1252" y="160" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">station_id : TEXT</text>
+<text x="1252" y="189" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">station_name : TEXT</text>
+<text x="1252" y="218" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">short_name : TEXT</text>
+<text x="1252" y="247" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">latitude : DOUBLE PRECISION</text>
+<text x="1252" y="276" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">longitude : DOUBLE PRECISION</text>
+<text x="1252" y="305" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">capacity : INTEGER</text>
+<text x="1252" y="334" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">is_charging : BOOLEAN</text>
+<rect x="60" y="420" width="500" height="388" fill="white" stroke="#6A7B89"/><rect x="60" y="420" width="500" height="40" fill="#DBEAF5" stroke="#6A7B89"/>
+<text x="72" y="447" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#17212B">gold.fact_ride</text>
+<text x="72" y="480" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">id : BIGINT</text>
+<text x="72" y="509" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">ride_id : VARCHAR</text>
+<text x="72" y="538" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">rideable_type_id : INTEGER</text>
+<text x="72" y="567" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">member_casual_id : INTEGER</text>
+<text x="72" y="596" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">start_station_id : TEXT</text>
+<text x="72" y="625" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">end_station_id : TEXT</text>
+<text x="72" y="654" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">started_at_id : TIMESTAMP</text>
+<text x="72" y="683" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">end_at_id : TIMESTAMP</text>
+<text x="72" y="712" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">start_lat : VARCHAR</text>
+<text x="72" y="741" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">start_lng : VARCHAR</text>
+<text x="72" y="770" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">end_lat : VARCHAR</text>
+<text x="72" y="799" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">end_lng : VARCHAR</text>
+<rect x="650" y="480" width="450" height="243" fill="white" stroke="#6A7B89"/><rect x="650" y="480" width="450" height="40" fill="#EEF2F5" stroke="#6A7B89"/>
+<text x="662" y="507" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#17212B">gold.dim_datetime</text>
+<text x="662" y="540" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">datetime_id : TIMESTAMP</text>
+<text x="662" y="569" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">year : NUMERIC</text>
+<text x="662" y="598" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">month : NUMERIC</text>
+<text x="662" y="627" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">day : NUMERIC</text>
+<text x="662" y="656" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">hour : NUMERIC</text>
+<text x="662" y="685" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">minute : NUMERIC</text>
+<text x="662" y="714" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">second : NUMERIC</text>
+<rect x="1240" y="420" width="500" height="388" fill="white" stroke="#6A7B89"/><rect x="1240" y="420" width="500" height="40" fill="#DBEAF5" stroke="#6A7B89"/>
+<text x="1252" y="447" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#17212B">gold.fact_station_status</text>
+<text x="1252" y="480" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">id : BIGINT</text>
+<text x="1252" y="509" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">station_id : TEXT</text>
+<text x="1252" y="538" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">num_bikes_available : INTEGER</text>
+<text x="1252" y="567" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">num_bikes_disabled : INTEGER</text>
+<text x="1252" y="596" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">num_docks_available : INTEGER</text>
+<text x="1252" y="625" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">num_docks_disabled : INTEGER</text>
+<text x="1252" y="654" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">is_installed : INTEGER</text>
+<text x="1252" y="683" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">is_renting : INTEGER</text>
+<text x="1252" y="712" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">is_returning : INTEGER</text>
+<text x="1252" y="741" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">datetime_id : TIMESTAMP</text>
+<text x="1252" y="770" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">classic_bikes_available : INTEGER</text>
+<text x="1252" y="799" font-family="Arial,sans-serif" font-size="14" font-weight="normal" fill="#17212B">electric_bikes_available : INTEGER</text>
+<text x="60" y="873" font-family="Arial,sans-serif" font-size="15" font-weight="normal" fill="#334656">Ride grain: fact_ride: intended one row per ride_id; station and date-time have start/end roles.</text>
+<text x="60" y="906" font-family="Arial,sans-serif" font-size="15" font-weight="normal" fill="#334656">Status grain: fact_station_status: one expanded vehicle-type entry per station from the latest payload; the type ID is not retained.</text>
+<text x="60" y="939" font-family="Arial,sans-serif" font-size="15" font-weight="normal" fill="#334656">Aggregation: Station-wide availability totals repeat across type entries. Do not sum these rows as independent station observations.</text>
+<text x="60" y="972" font-family="Arial,sans-serif" font-size="15" font-weight="normal" fill="#334656">Keys and history: Lines show SQL joins, not enforced database PK/FK constraints. No Type 2 station history or separate vehicle-availability dimension.</text>
+<text x="60" y="1005" font-family="Arial,sans-serif" font-size="15" font-weight="normal" fill="#334656">Types: Types follow dbt SQL and Bronze DDL. Ride coordinates remain VARCHAR; confirm deployed types with information_schema.columns.</text>
+</svg>
