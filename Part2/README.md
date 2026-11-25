@@ -2,11 +2,11 @@
 
 This folder contains the six refined business-question queries, their recorded results and the Airflow overview used in the report.
 
-- [Run the read-only queries](queries.sql)
-- [Recorded CSV results](results)
-- [Airflow overview](airflow-overview.png)
-- [Requirement review / AAR](REVIEW.md)
-- [Implemented schema](../star_schema/README.md)
+- [Run the read-only queries](reporting/queries.sql)
+- [Recorded CSV results](reporting/results)
+- [Airflow overview](reporting/airflow-overview.png)
+- [Requirement review / AAR](reporting/REVIEW.md)
+- [Implemented schema](star_schema/README.md)
 
 ## 1. Start the project
 
@@ -18,7 +18,7 @@ cd Data-Engineering-UT/Part2
 docker compose up --build -d
 ```
 
-Configuration is in `Part2/.env` and `citibike_dbt/profiles.yml`. The [Part2 README](../README.md) lists local addresses and default accounts. The analytical database is `bikes_db`; the dbt target schema is `gold`.
+ The analytical database is `bikes_db`; the dbt target schema is `gold`.
 
 The custom Airflow image installs dbt Core 1.8.7, dbt-postgres 1.8.2 and the PostgreSQL provider. The Compose file mounts the dbt project at `/dbt`.
 
@@ -68,7 +68,7 @@ The trip loader chooses the previous month using the computer's current date. Ch
 ## 3. Run the business queries
 
 1. Open pgAdmin at `http://localhost:5050`.
-2. Select `bikes_db`, open **Query Tool**, and open or paste this folder's [queries.sql](queries.sql).
+2. Select `bikes_db`, open **Query Tool**, and open or paste this folder's [queries.sql](reporting/queries.sql).
 3. Select one query and execute it. Export the result grid as CSV if needed.
 4. Change both date boundaries when analysing a different input month.
 
@@ -76,12 +76,12 @@ Use this folder's queries for the implemented model. The repository-root `querie
 
 | Business question | Recorded result file |
 | --- | --- |
-| BQ1. Departures per dock | [station_departures.csv](results/station_departures.csv) |
-| BQ2. Busy hours on weekdays/weekends | [hourly_weekday_weekend.csv](results/hourly_weekday_weekend.csv) |
-| BQ3. Morning net outflow, 07:00–09:00 | [morning_outflow.csv](results/morning_outflow.csv) |
-| BQ4. Evening net inflow, 17:00–19:00 | [evening_inflow.csv](results/evening_inflow.csv) |
-| BQ5. Station departures by bike type | [station_bike_types.csv](results/station_bike_types.csv) |
-| BQ6. Routes between different stations | [top_routes_distinct.csv](results/top_routes_distinct.csv) |
+| BQ1. Departures per dock | [station_departures.csv](reporting/results/station_departures.csv) |
+| BQ2. Busy hours on weekdays/weekends | [hourly_weekday_weekend.csv](reporting/results/hourly_weekday_weekend.csv) |
+| BQ3. Morning net outflow, 07:00–09:00 | [morning_outflow.csv](reporting/results/morning_outflow.csv) |
+| BQ4. Evening net inflow, 17:00–19:00 | [evening_inflow.csv](reporting/results/evening_inflow.csv) |
+| BQ5. Station departures by bike type | [station_bike_types.csv](reporting/results/station_bike_types.csv) |
+| BQ6. Routes between different stations | [top_routes_distinct.csv](reporting/results/top_routes_distinct.csv) |
 
 Time windows use the recorded trip timestamps. Weekdays are derived with `EXTRACT(ISODOW ...)`, not the day-of-month field. BQ3/BQ4 count arrivals by arrival time and departures by departure time. BQ6 excludes same-station round trips. All station queries omit trips without the station matches they need; capacity ratios use positive capacities from the latest station-information table.
 
