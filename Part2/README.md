@@ -2,6 +2,8 @@
 
 The implemented model contains two facts and four dimensions. See the [schema documentation and preview](star_schema/README.md), or open the [editable draw.io diagram](star_schema/20261112_star_schema.drawio).
 
+For the report, see [reproduction steps, tested queries and recorded results](reporting/README.md), including the [requirement review](reporting/REVIEW.md).
+
 ## How to Run
 
 ```
