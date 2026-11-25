@@ -1,8 +1,8 @@
 # Implemented Citi Bike Gold schema
 
-[Open the editable draw.io file](20261112_star_schema.drawio) · [Open the full-size preview](star_schema.svg)
+[Open the editable draw.io file](20261112_star_schema.drawio) · [Open the full-size preview](20261112_star_schema.svg)
 
-![Implemented Gold schema: two facts and four dimensions](star_schema.svg)
+![Implemented Gold schema: two facts and four dimensions](20261112_star_schema.svg)
 
 This diagram documents the current [dbt models](../citibike_dbt/models), reviewed against commit `ef1a2d7dd08f076790485f3b162dfc3adc9acedd`. It includes all **6 tables, 45 columns and 8 role-specific join relationships**. The filename of the existing draw.io document is retained so existing links remain valid.
 
